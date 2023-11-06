@@ -28,9 +28,7 @@ export class Content extends Component {
             return post.name.toLowerCase().includes(name);
         })
         
-        this.setState({
-            posts: filteredPosts
-        })
+        setFetchedPosts(filteredPosts)
     }
     
     render() {
@@ -45,16 +43,16 @@ export class Content extends Component {
                         type='search' 
                         id='searchinput' 
                         placeholder='By Author'
-                        onChange={(e) => this.handleChange(e)}
+                        onChange={(e) => handleChange(e)}
                         />
-                        <h4>posts found {this.state.posts.length}</h4>
+                        <h4>posts found {fetchedPosts.length}</h4>
                     </form>
                 </div>
 
                 <div className={css.SearchResults}>
                     {
                         this.state.isLoaded ?
-                        <PostItem savedPosts={this.state.posts} />
+                        <PostItem savedPosts={fetchedPosts} />
                         : <Loader />
                     }
                 </div>
